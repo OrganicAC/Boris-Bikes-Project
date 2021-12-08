@@ -10,7 +10,7 @@ describe Bike do
     describe '#working?' do
         it 'responds to working?' do
             my_bike = Bike.new
-            expect(my_bike.working?).to eq("Yes")
+            expect(my_bike.working?).to eq(true)
         end
     end
 end
