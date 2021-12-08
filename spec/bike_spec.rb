@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/docking_station.rb'
+require './lib/bike.rb'
 
 describe Bike do
     it Bike do
