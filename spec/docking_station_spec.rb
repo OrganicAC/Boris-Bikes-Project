@@ -1,50 +1,30 @@
-require 'rspec'
-require './lib/docking_station.rb'
-require './lib/bike.rb'
-
-describe DockingStation do
-   it docking_station = DockingStation do
-    end
-end
-
-describe DockingStation do
-    describe '#release_bike' do
-        it 'responds to release bike' do
-            docking_station = DockingStation.new
-            expect(subject).to respond_to :release_bike
-        end
-    end
-end
-
-describe DockingStation do
-    it { is_expected.to respond_to :release_bike }
-  
-    it 'releases working bikes' do
-      bike = subject.release_bike
-      expect(bike).to be_working
-    end
-  end
-
 require 'docking_station'
-describe DockingStation do
-    it { is_expected.to respond_to(:dock).with(1).argument }
-end 
+require 'bike'
 
 describe DockingStation do
-    it { is_expected.to respond_to(:bike) }
-end
 
-describe DockingStation do
-    it 'docks something' do
-        bike = Bike.new
-        expect(subject.dock(bike)).to eq bike
-    end
-end
+    describe "#release_bike" do
+      docking_station = DockingStation.new
+      it { is_expected.to respond_to :release_bike }
 
-describe DockingStation do
-    it 'returns docked bikes' do
+      it "raises error when there are no bikes in the docking station" do
+        expect{ subject.release_bike }.to raise_error 'No bikes available'
+      end
+
+      it "released bike, then check if bike works" do
         bike = Bike.new
         subject.dock(bike)
-        expect(subject.bike).to eq bike
+        expect(subject.release_bike.working?).to eq true
+      end
     end
+
+    describe "#dock_bike" do
+      it { is_expected.to respond_to(:dock).with(1).argument}
+    end
+    
+      it "docks a bike object" do
+        bike = Bike.new
+        expect(subject.dock(bike)).to eq bike
+      end
+    
 end
